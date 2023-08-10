@@ -1,0 +1,26 @@
+[debug] [2023-08-10T18:34:45.613Z] ----------------------------------------------------------------------
+[debug] [2023-08-10T18:34:45.616Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\felipe.struchel\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login
+[debug] [2023-08-10T18:34:45.617Z] CLI Version:   12.4.7
+[debug] [2023-08-10T18:34:45.617Z] Platform:      win32
+[debug] [2023-08-10T18:34:45.617Z] Node Version:  v18.16.0
+[debug] [2023-08-10T18:34:45.618Z] Time:          Thu Aug 10 2023 15:34:45 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2023-08-10T18:34:45.618Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-08-10T18:34:45.622Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+ 
+[debug] [2023-08-10T18:34:46.052Z] *** [apiv2] error from fetch(https://firebase-public.firebaseio.com/cli.json, {"headers":{},"method":"GET"}): FetchError: request to https://firebase-public.firebaseio.com/cli.json failed, reason: self-signed certificate in certificate chain
+[warn] !  Unable to fetch the CLI MOTD and remote config. 
+[debug] [2023-08-10T18:34:46.054Z] Failed to fetch MOTD FirebaseError: Failed to make request to https://firebase-public.firebaseio.com/cli.json
+[info] i  To change your data collection preference at any time, run `firebase logout` and log in again. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=699517387&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2023-08-10T18:34:52.419Z] Error: spawn cmd ENOENT
+    at ChildProcess._handle.onexit (node:internal/child_process:283:19)
+    at onErrorNT (node:internal/child_process:476:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[error] 
+[error] Error: An unexpected error has occurred.
