@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const userController = require('../controllers/userController')
 
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.post('/verifyUser', userController.verifyUser())
 
 module.exports = router;
