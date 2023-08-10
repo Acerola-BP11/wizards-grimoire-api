@@ -1,7 +1,7 @@
-import createUser from "../utils/createUser"
-import { auth } from "../utils/firebase"
+const { auth } = require('firebase-admin')
+const { createUser } = require('../utils/createUser') 
 
-export async function verifyUser (req, res) {
+async function verifyUser (req, res) {
     const userToken = req.body.userToken
     const userEmail = req.body.userEmail
     const username = req.body.username
@@ -20,4 +20,8 @@ export async function verifyUser (req, res) {
                 return res.status(403).end()
             }
         })
+}
+
+module.exports = {
+    verifyUser
 }

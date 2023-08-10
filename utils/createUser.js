@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
+const { doc, getDoc, setDoc } = require("firebase/firestore");
 import { database } from "./firebase";
 
 export default async function createUser(tokenEmail, userEmail, UserUid, username){
