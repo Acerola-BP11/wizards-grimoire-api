@@ -2,6 +2,7 @@ const { auth } = require('../utils/firebase')
 const { createUser } = require('../utils/createUser') 
 
 async function verifyUser (req, res) {
+    let response
     const userToken = req.body.userToken
     const userEmail = req.body.email
     const username = req.body.username
@@ -9,8 +10,13 @@ async function verifyUser (req, res) {
         .then(async (decodedToken) => {
             const uid = decodedToken.uid
             const tokenEmail = decodedToken.email
-            const user = await createUser(tokenEmail, userEmail, uid, username)
-            res.send(user)
+            response = await createUser(tokenEmail, userEmail, uid, username)
+            res.send(response)
+        }).catch((error) => {
+            res.send({
+                exists: null,
+                validated: false
+            })
         })
 }
 
