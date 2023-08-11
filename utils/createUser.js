@@ -1,16 +1,16 @@
-const { doc, getDoc, setDoc } = require("firebase/firestore");
-import { database } from "./firebase";
+const { firestore } = require('./firebase')
 
-export default async function createUser(tokenEmail, userEmail, UserUid, username){
+async function createUser(tokenEmail, userEmail, UserUid, username){
+    const usersRef = firestore.collection('Users')
     if(tokenEmail === userEmail){
-        const user = await getDoc(doc(database, '/users', UserUid))
-        if(user.exists()){
+        const user = await usersRef.doc(UserUid).get()
+        if(user.exists){
             return {
                 exists: true,
                 validated: true
             }
         }else{
-            await setDoc(doc(database, "/users", UserUid), {
+            await usersRef.doc(UserUid).set({
                 uid: UserUid,
                 username: username,
                 email: userEmail
@@ -26,4 +26,8 @@ export default async function createUser(tokenEmail, userEmail, UserUid, usernam
             validated: false
         }
     }
+}
+
+module.exports = {
+    createUser
 }

@@ -1,24 +1,16 @@
-const { auth } = require('firebase-admin')
+const { auth } = require('../utils/firebase')
 const { createUser } = require('../utils/createUser') 
 
 async function verifyUser (req, res) {
     const userToken = req.body.userToken
-    const userEmail = req.body.userEmail
+    const userEmail = req.body.email
     const username = req.body.username
     await auth.verifyIdToken(userToken)
-        .then((decodedToken) => {
+        .then(async (decodedToken) => {
             const uid = decodedToken.uid
             const tokenEmail = decodedToken.email
-            const user = createUser(tokenEmail, userEmail, uid, username)
-            if(user.validated === true) {
-                return res.send({
-                    uid: uid,
-                    username: username,
-                    email: userEmail
-                })
-            }else{
-                return res.status(403).end()
-            }
+            const user = await createUser(tokenEmail, userEmail, uid, username)
+            res.send(user)
         })
 }
 
