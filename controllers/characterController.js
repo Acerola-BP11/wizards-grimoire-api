@@ -1,4 +1,4 @@
-const { firestore } = require('./firebase')
+const { firestore } = require('../utils/firebase')
 
 async function getCharacters(req, res) {
     const uid = req.params.uid
@@ -20,11 +20,12 @@ async function getCharacter(req, res) {
 }
 
 async function createCharacter(req, res){
+    console.log(await req.body)
     const characterData = req.body.characterData
-    const uid = req.get.uid
-    const characterRef = firestore.collection('Users/'+uid)
-    characterRef.add(characterData)
-    res.status(200)
+    const uid = req.body.uid
+    const characterRef = firestore.collection('Users/'+ uid + '/' + 'characters')
+    await characterRef.doc().set(characterData)
+    res.status(200).end()
 }
 
 async function updateCharacter(req, res){
@@ -42,4 +43,8 @@ async function deleteCharacter(req, res){
     const characterRef = firestore.collection('Users/'+uid)
     await characterRef.doc(characterID).delete()
     res.status(200)
+}
+
+module.exports = {
+    getCharacter, getCharacters, createCharacter
 }
