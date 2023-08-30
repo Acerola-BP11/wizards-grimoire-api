@@ -9,6 +9,7 @@ async function createCampaign(req, res){
     const { campaignName, campaignDescription } = req.body
     const path = req.file.path
     const userUid = req.uid
+    const extension = req.imageExtension
     const campaignFolderRef = firestore.collection('Campaigns')
 
     let campaign = await campaignFolderRef.add({
@@ -22,10 +23,10 @@ async function createCampaign(req, res){
             }
         ]
     })
-
-    bucket.
     
-    bucket.upload(path, 'Campaigns/' + campaign.id)
+    bucket.upload(path, {
+        destination: (`Campaigns/${campaign.id}.${extension}`)
+    })
     fs.unlink(path, err => {
         if(err){
             throw err

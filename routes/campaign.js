@@ -9,6 +9,7 @@ const storage = multer.diskStorage({
     },
     filename: function(req, file, cb) {
         const archiveExtension = file.originalname.split('.')[1]
+        req.imageExtension = archiveExtension
         const fileName = require('crypto')
             .randomBytes(64)
             .toString('hex')
