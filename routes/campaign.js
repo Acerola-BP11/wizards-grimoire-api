@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const multer = require('multer');
-const { createCampaign } = require('../controllers/campaignController')
+const { createCampaign, getCampaigns } = require('../controllers/campaignController')
 const validateUserToken = require('../middleware/validateUserToken');
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -19,5 +19,6 @@ const storage = multer.diskStorage({
 const upload = multer({storage})
 
 router.post('/new', validateUserToken ,upload.single('campaignPicture'), createCampaign)
+router.get('/', validateUserToken, getCampaigns)
 
 module.exports = router
