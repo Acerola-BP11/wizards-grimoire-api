@@ -5,9 +5,10 @@ function validateUserToken(req, res, next){
     auth.verifyIdToken(token)
         .then((decodedToken) => {
             req.uid =  decodedToken.uid
+            req.username = decodedToken.name
             next()
         })
-        .catch(() => {
+        .catch((err) => {
             res.sendStatus(403).end()
         })
 }
